@@ -170,7 +170,8 @@ module.exports = function (app) {
         }
       });
 
+    } else {
+      res.redirect('/login');
     }
-    res.redirect('/login');
   });
 };
