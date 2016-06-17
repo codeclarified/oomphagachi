@@ -109,19 +109,21 @@ module.exports = function (app) {
         update = {
           fed_at : Date.now()
         }
-        Pet.update(conditions, update);
-        Pet.findOne({
-          owner: req.user.username,
-          url_name: req.params[0]
-        }, function(err, pet) {
-          if (err) return console.error(err);
+        Pet.update(conditions, update, function(){
+          Pet.findOne({
+            owner: req.user.username,
+            url_name: req.params[0]
+          }, function(err, pet) {
+            if (err) return console.error(err);
 
-          res.json({pet : pet});
-          /*if (req.param('json')) {
-          } else {
-            res.render('pet', { user : req.user, pet : pet });
-          }*/
+            res.json({pet : pet});
+            /*if (req.param('json')) {
+            } else {
+              res.render('pet', { user : req.user, pet : pet });
+            }*/
+          });
         });
+
       }
     }
   });
