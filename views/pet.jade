@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  #page-content-wrapper
+    .page-content.inset
+      .row
+        a#menu-toggle.btn.btn-default(href='#')
+          i.fa.fa-bars
+        .col-md-12
+          if (!user)
+            a(href="/login") Login
+            br
+            a(href="/register") Register
+          if (user)
+            p You are currently logged in as #{user.username}
+            a(href="/logout") Logout
+            p This is where your pet will live
+
+  script
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("active");
+    });

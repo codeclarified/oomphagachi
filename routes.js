@@ -1,10 +1,15 @@
 var passport = require('passport');
 var Account = require('./models/account');
+var Pet = require('./models/pet');
 
 module.exports = function (app) {
 
   app.get('/', function (req, res) {
-      res.render('index', { user : req.user });
+      if (req.user) {
+        res.redirect('/pets');
+      } else {
+        res.render('index', { user : req.user });
+      }
   });
 
   app.get('/register', function(req, res) {
@@ -28,7 +33,7 @@ module.exports = function (app) {
   });
 
   app.post('/login', passport.authenticate('local'), function(req, res) {
-      res.redirect('/');
+      res.redirect('/pets');
   });
 
   app.get('/logout', function(req, res) {
@@ -36,8 +41,36 @@ module.exports = function (app) {
       res.redirect('/');
   });
 
-  app.get('/ping', function(req, res){
-      res.send("pong!", 200);
+  app.get('/pets', function(req, res) {
+    if (req.user) {
+      Pet.find({ owner: req.user.username }, function (err, pets) {
+        if (err) return console.error(err);
+        if (!pets) {
+          res.render('add-pet', { user : req.user });
+        } else {
+          res.render('pets', { user : req.user, pets : pets });
+        }
+      });
+    } else {
+      res.redirect('/login');
+    }
+  });
+
+  app.post('/add-pet', function(req, res) {
+    var pet = new Pet({ name : req.body.name, owner : req.body.owner });
+    pet.save(function(err, pet) {
+      if (err) return console.error(err);
+    });
+
+    res.redirect('/pets');
+  });
+
+  app.get('/add-pet', function(req, res) {
+    if (req.user) {
+      res.render('add-pet', { user : req.user });
+    } else {
+      res.redirect('/login');
+    }
   });
 
 };

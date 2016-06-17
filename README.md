@@ -1,20 +1,21 @@
-## quick start
+# Oomphagachi - An Oomph hack day project
 
-1. `$ git clone git@github.com:mjhea0/node-bootstrap3-template.git your_app`
-2. `$ cd your_app`
-3. `$ npm install`
-4. `$ node app`
+Your virtual companion. Sign up for an account and this little guy can hang out
+in a browser or new clients can be built.
 
-### desktop version
+## Food
 
-![main](https://raw.github.com/mjhea0/node-bootstrap3-template/master/screenshots/main.png)
+Everyone needs to eat
 
-### mobile version 1
+## Entertainment
 
-![mobile1](https://raw.github.com/mjhea0/node-bootstrap3-template/master/screenshots/mobile1.png)
+Don't let your friend die of boredom
 
-### mobile version 2
+### Technology
 
-![mobile2](https://raw.github.com/mjhea0/node-bootstrap3-template/master/screenshots/mobile2.png)
-
-
+* node.js
+* mongodb
+* express
+* passport
+* jade
+* bootstrap
