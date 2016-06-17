@@ -30,6 +30,7 @@ block content
                 button.btn.btn-default(type='submit', name='action', value='play') Play
                 &nbsp;
                 button.btn.btn-default(type='submit', name='action', value='sleep') Sleep
+                button.btn.btn-default(type='submit', name='action', value='panic') Panic
 
             else
               p This pet does not exist!
@@ -38,4 +39,8 @@ block content
     $("#menu-toggle").click(function(e) {
       e.preventDefault();
       $("#wrapper").toggleClass("active");
+    });
+    $("button[value='panic']").click(function(e) {
+      e.preventDefault();
+      alert("Panic jerks!");
     });
