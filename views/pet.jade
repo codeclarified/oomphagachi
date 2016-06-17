@@ -14,15 +14,6 @@ block content
           if (user)
             if (pet)
               h2 #{pet.name}
-              dl
-                dt Age
-                dd #{moment(pet.birthday).from(moment(), true)}
-                dt Last ate
-                dd #{moment(pet.fed_at).from()}
-                dt Last played
-                dd #{moment(pet.played_at).from()}
-                dt Last slept
-                dd #{moment(pet.slept_at).from()}
 
               form(role='form', action="/pet/#{pet.url_name}",method="post", style='max-width: 300px;')
                 button.btn.btn-default(type='submit', name='action', value='feed') Feed
@@ -32,6 +23,16 @@ block content
                 button.btn.btn-default(type='submit', name='action', value='sleep') Sleep
                 &nbsp;
                 button.btn.btn-default(type='submit', name='action', value='panic') Panic
+
+              dl
+                dt Age
+                dd #{moment(pet.birthday).from(moment(), true)}
+                dt Last ate
+                dd #{moment(pet.fed_at).from()}
+                dt Last played
+                dd #{moment(pet.played_at).from()}
+                dt Last slept
+                dd #{moment(pet.slept_at).from()}
 
               form(role='form', action="/remove/#{pet.url_name}", method="post", style="max-width: 300px; margin-top: 100px;")
                 .form-group
