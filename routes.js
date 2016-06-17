@@ -164,6 +164,7 @@ module.exports = function (app) {
           if ( req.body.confirm !== 'true' ) {
             res.render('pet', { user : req.user, pet : pet, msg : 'You must check the confirmation box to delete this pet' });
           } else {
+            pet.remove();
             res.render('pet', { user : req.user, pet : pet, msg : 'Pet will be deleted' });
 
           }
