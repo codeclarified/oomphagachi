@@ -33,6 +33,14 @@ block content
                 &nbsp;
                 button.btn.btn-default(type='submit', name='action', value='panic') Panic
 
+              form(role='form', action="/remove/#{pet.url_name}", method="post", style="max-width: 300px;")
+                label(for="confirm-remove") Check to confirm removal
+                input#confirm-remove(type="checkbox", name="confirm", value="true")
+                button.btn.btn-danger(type='submit', name='action', value='delete') Delete Pet
+
+              if (msg)
+                p #{msg}
+
             else
               p This pet does not exist!
 

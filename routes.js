@@ -152,4 +152,18 @@ module.exports = function (app) {
       });
     }
   });
+
+  app.post('/remove/*', function(req, res) {
+    if (req.user) {
+      if ( req.body.action === 'delete') {
+        if ( req.body.confirm !== 'true' ) {
+          res.render('pet', { user : req.user, pet : pet, msg : 'You must check the confirmation box to delete this pet' });
+        }
+
+      res.render('pet', { user : req.user, pet : pet });
+
+      }
+    }
+    res.redirect('/login');
+  });
 };
