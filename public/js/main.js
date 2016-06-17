@@ -10,6 +10,7 @@ $(function() {
 		switch($(this).val()){
 			case 'panic':
 				alert('Panic jerks!');
+				game.changeState('panic');
 				break;
 			default:
 				$.ajax(form_action, {
@@ -19,6 +20,7 @@ $(function() {
 					},
 					success: function(response, status) {
 						console.log(response);
+
 					}
 				});
 				break;
