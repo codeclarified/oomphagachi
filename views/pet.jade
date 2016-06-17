@@ -16,6 +16,10 @@ block content
             a(href="/logout") Logout
             if (pet)
               p This is where your pet #{pet.name} will live
+              form(role='form', action="/pet/#{pet.name}",method="post", style='max-width: 300px;')
+                .form-group
+                  input.form-control(type='hidden', name="action", value='feed')
+                button.btn.btn-default(type='submit') Feed
             else
               p This pet does not exist!
 

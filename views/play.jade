@@ -14,6 +14,7 @@ block content
           if (user)
             p You are currently logged in as #{user.username}
             a(href="/logout") Logout
+            #{url_name}
             if (pet)
               p This is #{pet.name}'s play area
               canvas#play_area

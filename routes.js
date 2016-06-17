@@ -84,26 +84,57 @@ module.exports = function (app) {
 
   app.get('/pet/*', function(req, res) {
     if (req.user) {
+      var action = req.body.action;
       Pet.findOne({
         owner: req.user.username,
         url_name: req.params[0]
       }, function(err, pet) {
         if (err) return console.error(err);
-
-        res.render('pet', { user : req.user, pet : pet });
+        if (req.param('json')) {
+          res.json({pet : pet});
+        } else {
+          res.render('pet', { user : req.user, pet : pet });
+        }
       });
     }
   });
 
-  app.get('/pet/*/play', function(req, res) {
+  app.post('/pet/*', function(req, res) {
+    if (req.user) {
+      if ( req.body.action == 'feed' ) {
+        var conditions = {
+          owner : req.user.username,
+          url_name : req.params[0]
+        },
+        update = {
+          fed_at : Date.now()
+        }
+        Pet.update(conditions, update);
+        Pet.findOne({
+          owner: req.user.username,
+          url_name: req.params[0]
+        }, function(err, pet) {
+          if (err) return console.error(err);
+
+          res.json({pet : pet});
+          /*if (req.param('json')) {
+          } else {
+            res.render('pet', { user : req.user, pet : pet });
+          }*/
+        });
+      }
+    }
+  });
+
+  app.get('/pet/:url_name(*)/play', function(req, res) {
     if (req.user) {
       Pet.findOne({
         owner: req.user.username,
-        url_name: req.params[0]
+        url_name: req.params.url_name
       }, function(err, pet) {
         if (err) return console.error(err);
 
-        res.render('play', { user : req.user, pet : pet });
+        res.render('play', { user : req.user, pet : pet, url_name : url_name });
       });
     }
   });
