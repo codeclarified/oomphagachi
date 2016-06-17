@@ -15,7 +15,7 @@ block content
             if (pet)
               h2 #{pet.name}
               #gameContainer(style="height: 400px; width: 600px;")
-                canvas#game(height="400" width="600")
+                canvas#game(height="400", width="600")
                 #food
 
               form(role='form', action="/pet/#{pet.url_name}",method="post", style='max-width: 300px;')
