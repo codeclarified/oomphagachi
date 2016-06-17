@@ -43,10 +43,12 @@ block content
                   button.btn.btn-danger(type='submit', name='delete', value='delete') Delete Pet
 
               if (msg)
-                p #{msg}
+                .alert.alert-danger
+                  p #{msg}
 
             else
-              p This pet does not exist!
+              .alert.alert-warning
+                p This pet does not exist!
 
   script
     $("#menu-toggle").click(function(e) {
