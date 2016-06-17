@@ -101,13 +101,25 @@ module.exports = function (app) {
 
   app.post('/pet/*', function(req, res) {
     if (req.user) {
-      if ( req.body.action == 'feed' ) {
+      if ( req.body.action ) {
+        var key;
+        switch(req.body.action) {
+          case 'feed':
+            key = 'fed_at';
+            break;
+          case 'sleep':
+            key = 'slept_at';
+            break;
+          case 'play':
+            key = 'played_at';
+            break;
+        }
         var conditions = {
           owner : req.user.username,
           url_name : req.params[0]
         },
         update = {
-          fed_at : Date.now()
+          [key] : Date.now()
         }
         Pet.update(conditions, update, function(){
           Pet.findOne({

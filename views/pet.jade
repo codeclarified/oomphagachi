@@ -17,9 +17,10 @@ block content
             if (pet)
               p This is where your pet #{pet.name} will live
               form(role='form', action="/pet/#{pet.url_name}",method="post", style='max-width: 300px;')
-                .form-group
-                  input.form-control(type='hidden', name="action", value='feed')
-                button.btn.btn-default(type='submit') Feed
+                button.btn.btn-default(type='submit', name='action', value='feed') Feed
+                button.btn.btn-default(type='submit', name='action', value='play') Play
+                button.btn.btn-default(type='submit', name='action', value='sleep') Sleep
+
             else
               p This pet does not exist!
 
