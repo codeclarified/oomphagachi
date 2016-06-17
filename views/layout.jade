@@ -22,6 +22,10 @@ html
             a(href='/') Home
           li
             a(href='/add-pet') Add Pet
+          if (pets)
+            each pet in pets
+            li
+              a(href='/pet/#{pet.url_name}') #{pet.name}
           if (user)
             li
               a(href="/logout") Logout
