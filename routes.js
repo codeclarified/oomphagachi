@@ -75,7 +75,14 @@ module.exports = function (app) {
 
   app.get('/pet/*', function(req, res) {
     if (req.user) {
-      res.send(req.params[0]);      
+      Pet.findOne({
+        owner: req.user.username,
+        url_name: req.params[0]
+      }, function(err, pet) {
+        if (err) return console.error(err);
+
+        res.render('pet', { user : req.user, pet : pet });
+      });
     }
   });
 };
