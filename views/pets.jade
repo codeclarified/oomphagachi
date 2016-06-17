@@ -12,12 +12,11 @@ block content
             br
             a(href="/register") Register
           if (user)
-            p You are currently logged in as #{user.username}
-            a(href="/logout") Logout
-            p This is where your pet will live
+            h1 #{user.username}'s current pets:
 
+            ul
             each pet in pets
-              p #{pet.name}
+              li #{pet.name}
 
   script
     $("#menu-toggle").click(function(e) {
