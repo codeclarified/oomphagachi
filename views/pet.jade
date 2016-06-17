@@ -30,6 +30,7 @@ block content
                 button.btn.btn-default(type='submit', name='action', value='play') Play
                 &nbsp;
                 button.btn.btn-default(type='submit', name='action', value='sleep') Sleep
+                &nbsp;
                 button.btn.btn-default(type='submit', name='action', value='panic') Panic
 
             else
@@ -39,8 +40,4 @@ block content
     $("#menu-toggle").click(function(e) {
       e.preventDefault();
       $("#wrapper").toggleClass("active");
-    });
-    $("button[value='panic']").click(function(e) {
-      e.preventDefault();
-      alert("Panic jerks!");
     });
