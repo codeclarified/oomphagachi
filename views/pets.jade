@@ -17,7 +17,7 @@ block content
             ul
             each pet in pets
               li
-                a(href="/pet/{#pet.url_name}") #{pet.name}
+                a(href="/pet/#{pet.url_name}") #{pet.name}
 
   script
     $("#menu-toggle").click(function(e) {
