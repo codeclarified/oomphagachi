@@ -16,7 +16,7 @@ block content
               h2 #{pet.name}
               dl
                 dt Age
-                dd #{moment().from(pet.birthday)}
+                dd #{moment().toNow(pet.birthday)}
 
               form(role='form', action="/pet/#{pet.url_name}",method="post", style='max-width: 300px;')
                 button.btn.btn-default(type='submit', name='action', value='feed') Feed
