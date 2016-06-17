@@ -155,14 +155,21 @@ module.exports = function (app) {
 
   app.post('/remove/*', function(req, res) {
     if (req.user) {
-      if ( req.body.delete === 'delete') {
-        if ( req.body.confirm !== 'true' ) {
-          res.render('pet', { user : req.user, pet : pet, msg : 'You must check the confirmation box to delete this pet' });
+      Pet.findOne({
+        owner: req.user.username,
+        url_name: req.params[0]
+      }, function(err, pet) {
+        if (err) return console.error(err);
+        if ( req.body.delete === 'delete') {
+          if ( req.body.confirm !== 'true' ) {
+            res.render('pet', { user : req.user, pet : pet, msg : 'You must check the confirmation box to delete this pet' });
+          }
+
+        res.render('pet', { user : req.user, pet : pet });
+
         }
+      });
 
-      res.render('pet', { user : req.user, pet : pet });
-
-      }
     }
     res.redirect('/login');
   });
