@@ -6,10 +6,19 @@ $(function() {
 
 	$("button[name='action']").click(function(e) {
 		e.preventDefault();
-		var form_action = $(this).parent('form').attr('action');
+		var form_action = $(this).parent('form').attr('action'),
+			pet_action = $(this).val(),
+			game_action;
+
+		if(pet_action === 'play'){
+			game_action = 'entertain';
+		} else if(pet_action === 'feed'){
+			game_action = 'eat';
+		} else {
+			game_action = pet_action;
+		}
 		switch($(this).val()){
 			case 'panic':
-				alert('Panic jerks!');
 				game.changeState('panic');
 				break;
 			default:
@@ -20,7 +29,7 @@ $(function() {
 					},
 					success: function(response, status) {
 						console.log(response);
-
+						game.changeState(game_action);
 					}
 				});
 				break;
