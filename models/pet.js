@@ -4,7 +4,12 @@ var mongoose = require('mongoose'),
 
 var Pet = new Schema({
     name: String,
-    owner: String
+    owner: String,
+    url_name: String,
+    birthday: Date,
+    fed_at: Date,
+    played_at: Date,
+    slept_at: Date
 });
 
 module.exports = mongoose.model('Pet', Pet);

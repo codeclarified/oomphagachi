@@ -57,7 +57,16 @@ module.exports = function (app) {
   });
 
   app.post('/add-pet', function(req, res) {
-    var pet = new Pet({ name : req.body.name, owner : req.body.owner });
+    var url_name = req.body.name.toLowerCase();
+    var pet = new Pet({
+		name : req.body.name,
+		owner : req.body.owner,
+		url_name : url_name,
+		birthday : Date.now(),
+		fed_at : Date.now(),
+		slept_at : Date.now(),
+		played_at : Date.now()
+	});
     pet.save(function(err, pet) {
       if (err) return console.error(err);
     });
