@@ -94,4 +94,17 @@ module.exports = function (app) {
       });
     }
   });
+
+  app.get('/pet/*/play', function(req, res) {
+    if (req.user) {
+      Pet.findOne({
+        owner: req.user.username,
+        url_name: req.params[0]
+      }, function(err, pet) {
+        if (err) return console.error(err);
+
+        res.render('play', { user : req.user, pet : pet });
+      });
+    }
+  });
 };

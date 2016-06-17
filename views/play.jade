@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  #page-content-wrapper
+    .page-content.inset
+      .row
+        a#menu-toggle.btn.btn-default(href='#')
+          i.fa.fa-bars
+        .col-md-12
+          if (!user)
+            a(href="/login") Login
+            br
+            a(href="/register") Register
+          if (user)
+            p You are currently logged in as #{user.username}
+            a(href="/logout") Logout
+            if (pet)
+              p This is #{pet.name}'s play area
+              canvas#play_area
+            else
+              p This pet does not exist!
+
+  script
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("active");
+    });
