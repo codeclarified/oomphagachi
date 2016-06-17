@@ -73,4 +73,9 @@ module.exports = function (app) {
     }
   });
 
+  app.get('/pet/*', function(req, res) {
+    if (req.user) {
+      res.send(req.params[0]);      
+    }
+  });
 };
