@@ -101,9 +101,9 @@ module.exports = function (app) {
 
   app.post('/pet/*', function(req, res) {
     if (req.user) {
-      if ( req.body.action ) {
+      if ( req.body.petaction ) {
         var key;
-        switch(req.body.action) {
+        switch(req.body.petaction) {
           case 'feed':
             key = 'fed_at';
             break;
@@ -114,6 +114,8 @@ module.exports = function (app) {
             key = 'played_at';
             break;
         }
+        console.log(req.body.petaction);
+        console.log(key);
         var conditions = {
           owner : req.user.username,
           url_name : req.params[0]

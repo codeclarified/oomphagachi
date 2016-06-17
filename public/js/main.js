@@ -4,7 +4,7 @@ $(function() {
 		game.init(300, 200);
 	}
 
-	$("button[name='action']").click(function(e) {
+	$("button[name='petaction']").click(function(e) {
 		e.preventDefault();
 		var form_action = $(this).parent('form').attr('action'),
 			pet_action = $(this).val(),
@@ -28,7 +28,6 @@ $(function() {
 						action: form_action
 					},
 					success: function(response, status) {
-						console.log(response);
 						game.changeState(game_action);
 					}
 				});

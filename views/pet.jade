@@ -19,13 +19,13 @@ block content
                 #food
 
               form(role='form', action="/pet/#{pet.url_name}",method="post", style='max-width: 300px;')
-                button.btn.btn-default(type='submit', name='action', value='feed') Feed
+                button.btn.btn-default(type='submit', name='petaction', value='feed') Feed
                 &nbsp;
-                button.btn.btn-default(type='submit', name='action', value='play') Play
+                button.btn.btn-default(type='submit', name='petaction', value='play') Play
                 &nbsp;
-                button.btn.btn-default(type='submit', name='action', value='sleep') Sleep
+                button.btn.btn-default(type='submit', name='petaction', value='sleep') Sleep
                 &nbsp;
-                button.btn.btn-default(type='submit', name='action', value='panic') Panic
+                button.btn.btn-default(type='submit', name='petaction', value='panic') Panic
 
               dl
                 dt Age
