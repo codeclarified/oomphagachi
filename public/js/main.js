@@ -25,7 +25,7 @@ $(function() {
 				$.ajax(form_action, {
 					method: 'POST',
 					data: {
-						action: pet_action
+						petaction: pet_action
 					},
 					success: function(response, status) {
 						game.changeState(game_action);
